@@ -50,9 +50,8 @@ runAnalyticsQuery token queryURL = do
         }
 
 renderTopArticleQueryResponse :: AnalyticsResponse -> String
-renderTopArticleQueryResponse response = joinRows $ map renderRow $ filterRows rows
+renderTopArticleQueryResponse response = concatMap renderRow (filterRows rows)
     where
-        joinRows = foldl (++) ""
         renderRow r = "- title: \"" ++ r!!1 ++ "\"\n  url: \"" ++ r!!0 ++ "\"\n"
         filterRows = filter (\x -> x!!1 /= "(not set)")
         rows = analyticsResponseRows response

@@ -5,4 +5,5 @@ packages:
 extra-deps:
 - google-oauth2-0.2.2
 - network-api-support-0.1.0
-resolver: lts-7.16
+compiler: ghc-8.0.1
+resolver: nightly-2016-07-27

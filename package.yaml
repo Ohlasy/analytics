@@ -1,0 +1,25 @@
+name: Analytics
+version: 0.1.0
+synopsis: Provide Google Analytics data for a static website
+author: Tomáš Znamenáček <tomas.znamenacek@gmail.com>
+license: MIT
+github: Ohlasy/analytics
+dependencies:
+    - base
+    - aeson
+    - yaml
+    - bytestring
+    - google-oauth2
+    - http-conduit
+    - http-types
+library:
+    source-dirs: src
+    exposed-modules:
+        - Analytics
+        - Credentials
+executables:
+    Analytics:
+        main: Main.hs
+        source-dirs: app
+        dependencies:
+            - Analytics

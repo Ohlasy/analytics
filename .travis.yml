@@ -1,6 +1,4 @@
 language: haskell
 before_install:
-- openssl aes-256-cbc -K $encrypted_a3ca37296d87_key -iv $encrypted_a3ca37296d87_iv
-  -in auth-credentials.yml.enc -out auth-credentials.yml -d
-- openssl aes-256-cbc -K $encrypted_a3ca37296d87_key -iv $encrypted_a3ca37296d87_iv
-  -in auth-token.yml.enc -out auth-token.yml -d
+    - openssl aes-256-cbc -K $encrypted_a3ca37296d87_key -iv $encrypted_a3ca37296d87_iv -in auth-credentials.yml.enc -out auth-credentials.yml -d
+    - openssl aes-256-cbc -K $encrypted_a3ca37296d87_key -iv $encrypted_a3ca37296d87_iv -in auth-token.yml.enc -out auth-token.yml -d

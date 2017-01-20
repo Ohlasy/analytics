@@ -13,7 +13,8 @@ before_install:
     - stack setup
 
 script:
-    - stack run --no-terminal Analytics
+    - stack build --no-terminal
+    - stack exec Analytics
 
 addons:
     apt:

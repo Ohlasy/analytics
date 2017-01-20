@@ -1,2 +1,4 @@
 .stack-work
 Analytics.cabal
+auth-token.yml
+auth-credentials.yml

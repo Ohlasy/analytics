@@ -35,8 +35,8 @@ getAnalyticsAccessToken = do
         Nothing -> return Nothing
     where
         authScope = ["https://www.google.com/analytics/feeds/"]
-        credentialsFile = ".credentials.yml"
-        tokenCacheFile = ".token.yml"
+        credentialsFile = "auth-credentials.yml"
+        tokenCacheFile = "auth-token.yml"
 
 runAnalyticsQuery :: OAuth2Token -> String -> IO (Maybe AnalyticsResponse)
 runAnalyticsQuery token queryURL = do

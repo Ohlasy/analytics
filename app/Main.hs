@@ -36,8 +36,9 @@ getAnalyticsAccessToken = do
 
 runAnalyticsQuery :: OAuth2Token -> String -> IO (Maybe AnalyticsResponse)
 runAnalyticsQuery token queryURL = do
-    request <- parseUrl queryURL
-    response <- withManager $ httpLbs $ authorize token request
+    manager <- newManager tlsManagerSettings
+    request <- parseUrlThrow queryURL
+    response <- httpLbs (authorize token request) manager
     return $ parseAnalyticsResponse $ responseBody response
     where
         authorize token request = request {

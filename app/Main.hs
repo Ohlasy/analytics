@@ -5,6 +5,7 @@ import Network.HTTP.Conduit
 import Network.HTTP.Types (hAuthorization)
 import Data.Monoid
 import qualified Data.ByteString.Char8 as B8
+import System.Exit
 
 topReadArticlesQueryURL = "https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A97173197&start-date=60daysAgo&end-date=yesterday&metrics=ga%3Ausers%2Cga%3Apageviews&dimensions=ga%3ApagePath%2Cga%3ApageTitle&sort=-ga%3Apageviews&filters=ga%3ApagePath%3D%40%2Fclanky%2F20&max-results=10"
 
@@ -15,10 +16,13 @@ main = do
         Just token -> do
             response <- runAnalyticsQuery token topReadArticlesQueryURL
             case response of
-                Just response -> putStrLn $ renderTopArticleQueryResponse response
-                Nothing -> putStrLn "Error parsing the server response."
-        Nothing -> do
-            putStrLn "Error parsing the analytics credentials file."
+                Just response -> do
+                    putStrLn $ renderTopArticleQueryResponse response
+                    exitSuccess
+                Nothing ->
+                    die "Error parsing the server response."
+        Nothing ->
+            die "Error parsing the analytics credentials file."
 
 getAnalyticsAccessToken :: IO (Maybe OAuth2Token)
 getAnalyticsAccessToken = do

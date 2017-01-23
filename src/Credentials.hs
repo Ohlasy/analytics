@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- OAuth2 credentials with JSON serialization support
 module Credentials (
     OAuth2Credentials(..),
     parseOAuth2Credentials,

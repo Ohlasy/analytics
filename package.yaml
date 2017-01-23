@@ -16,7 +16,7 @@ library:
     source-dirs: src
     exposed-modules:
         - Analytics
-        - Credentials
+        - Auth
 executables:
     Analytics:
         main: Main.hs

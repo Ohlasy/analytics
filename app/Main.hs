@@ -1,7 +1,8 @@
 import Analytics (TopArticle, getTopArticles)
 import Auth (AuthToken, getAuthToken)
+import qualified Data.ByteString.Lazy as B
+import qualified Data.Aeson.Encode.Pretty as Aeson
 import System.Exit
-import Data.Aeson
 
 main :: IO ()
 main = do
@@ -11,7 +12,7 @@ main = do
             articles <- getTopArticles token
             case articles of
                 Just articles -> do
-                    putStrLn $ show $ Data.Aeson.encode articles
+                    B.writeFile "top-articles.json" $ Aeson.encodePretty articles
                     exitSuccess
                 Nothing ->
                     die "Error parsing server response."

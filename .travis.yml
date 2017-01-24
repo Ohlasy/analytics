@@ -11,14 +11,10 @@ before_install:
     - export PATH=$HOME/.local/bin:$PATH
     - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
     - stack setup
-    - gem install dpl
 
 script:
     - stack build --no-terminal
     - stack exec Analytics
-    - mkdir build
-    - mv top-articles.json build/
-    - dpl --provider=pages --github-token=${deploy_key} --target-branch=gh-pages --local-dir=build
 
 addons:
     apt:

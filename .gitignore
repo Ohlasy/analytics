@@ -3,3 +3,4 @@ Analytics.cabal
 auth-token.yml
 auth-credentials.yml
 top-articles.json
+deploy_key

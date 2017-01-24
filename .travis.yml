@@ -15,6 +15,7 @@ before_install:
 script:
     - stack build --no-terminal
     - stack exec Analytics
+    - ./deploy.sh
 
 addons:
     apt:

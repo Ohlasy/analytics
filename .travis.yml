@@ -15,7 +15,20 @@ before_install:
 script:
     - stack build --no-terminal
     - stack exec Analytics
-    - ./deploy.sh
+    - mkdir build
+    - mv top-articles.json build
+
+deploy:
+    provider: s3
+    access_key_id:
+        - secure: "QadWSKxsvRZKjSxLAJjZR5q/yGDfCtOpcSiQTNpDtsobY+QdDyJ5FO043WPSvZ32MnYBKqgwcU6QElLJ8X/J8gJKKwr2VwpfFjO7AIDD89Rbca9AP0PwUm96nHdgnM8R7ev1MbWYGJou/3K5VaC3Dlv921MSwGzXM/DkZdpdl3kugxH+FwFazBWXO6hcffQyOkYPz27Z8l+gqpD3OjGHhhQGn0odBLktj+xjEGTW52ve/7xUuyHPjFCw0oIGOM97zpliSVNbSP/Kion/2hpXd4vYxD8wjos7WT3t0e/4IirGSZmBlGJD+QWBhJyO/lEelm10hQdDrgbpUOBpsPLwcb78gFBuL0cSTgfrxGsnoxhxVszk6IdOoykyLw/y2oKBqPqtLstGhVt5Ctc7sKMAun1JzWH+zzMS12HzTZMLky5DSAnqSHGFkMLH9vyHec4CVqjzHu8n5j5iRcVscqDNeQKZg5LTq0kBpsl30uH5KmyiBu3ZfZTTmwGMitMD5YjaoXUIZxdZlB3Q7yK1A6iUYT+kD3wDFICjiJ/yGc3nqLYPhthN8HgWi9s+2+Ke3z28hhDLRCbLFaqvuG92iKbLswh0E0RZH3J+Xy2dvduNjMavQPMai/7fQXjoCVAG10xdaOIyeddfN7CDLids7F1Yeft7+Iiwduo81tq2Ax2W9Oo="
+    secret_access_key:
+        - secure: "hSra39G1bCmu6Y68R++XXWbSnsbsi55phzGHlEVJw5FoIzaOFEN5+IOCNWFJQWmbVJRsU4qJix8YJ7f+ADoh9JnfUusvEompoVZ7wnN3GQPbtFaZqHu32ib6RqOEC6yyvFgjIxTwi/7epkSKFvDE+okYt7HMZjpMEzul8oVVOgKdeTFJrourcmFFDQNYSjh74gtt8KBh0JWKwkb4A73Dd5AtLMIKtPXv8PeliRo074eaVX48/bt2bJ7hlsA/mqEulN/4sc1c6Cl4oxZKzEx9LwKT/ThJM8W3RsXNtuFp/PLqVQ2KPE6nkO0/Ng7OztjN/UFTCO/yyvwEskEEUPEF4YP5avqGoMFGEEzSR6R7cGHf2ulFmaWp0cKidPjPpp7P9CSaYmrBKqlv199XIUgMxfcC2tcVDonNLsg/H3Rs4GS72H61ACg+6XnFnrDl9CNcm4sEP2wjbOAQmWUIsAT20DNkegYkwzGT2xZLQMKscVqX5wYfdyXZsnWryZUJ7rFeTqU+treqkhQF5O3/lbFAH6udD9osP9TFnJ9eSLXl33SY/exaEYCiMouaXGoFt94Rka7HWXuP3IhUTRWDe0gxYPpxfhlMGXVoIC1+aMiQmzF2czwKw5ku7bMmMj8VBzkCOfL6wiANLCKfdpgK5AhmozJDLoQOXO/m5QSfMiR2k+4="
+    bucket: "data.ohlasy.info"
+    region: "eu-central-1"
+    skip_cleanup: true
+    local_dir: build
+    acl: public_read
 
 addons:
     apt:
